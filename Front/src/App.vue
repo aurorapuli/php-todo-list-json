@@ -12,7 +12,21 @@ export default {
   methods: {
     addTask() {
 
+      const params = {
+        params: {
 
+          text: this.newTask
+
+        }
+      }
+
+      axios.get('http://localhost/php-todo-list-json/Back/addTask.php', params)
+        .then(res => {
+          this.todoList = res.data;
+          this.newTask = "";
+
+
+        }).catch(err => console.log(err));
     }
   },
   mounted() {
