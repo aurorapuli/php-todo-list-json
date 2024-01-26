@@ -86,6 +86,7 @@ export default {
 </script>
 
 <template>
+  <h1>Benvuto nella tua TodoList</h1>
   <form @submit.prevent="addTask">
 
     <input type="text" name="text" v-model="newTask">
@@ -93,9 +94,12 @@ export default {
   </form>
 
   <ul>
-    <li v-for="(list, index) in todoList" :key="index" @click="changeValue(index)"
-      :class="{ 'line-trought': list.completed === false }">
-      {{ list.task }}
+    <li v-for="(list, index) in todoList" :key="index">
+
+
+      <div @click="changeValue(index)" :class="{ 'line-trought': list.completed === true }">
+        {{ list.task }}
+      </div>
 
       <button @click="deleteElement(index)">X</button>
     </li>
@@ -106,6 +110,9 @@ export default {
 li {
   text-align: start;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+
 }
 
 .line-trought {
