@@ -1,0 +1,18 @@
+[
+    {
+        "task": "Fare la spesa",
+        "completed": true
+    },
+    {
+        "task": "Studiare PHP",
+        "completed": true
+    },
+    {
+        "task": "Bere il Th\u00e8",
+        "completed": true
+    },
+    {
+        "task": "Guardare Netflix",
+        "completed": true
+    }
+]

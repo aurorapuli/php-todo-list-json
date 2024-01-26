@@ -11,11 +11,8 @@ export default {
   },
   methods: {
     addTask() {
-      this.todoList.push({ task: this.newTask, completed: true })
 
-      console.log(this.todoList);
 
-      this.newTask = ""
     }
   },
   mounted() {
@@ -32,10 +29,16 @@ export default {
 </script>
 
 <template>
-  <input type="text" name="text" v-model="newTask">
-  <button @click="addTask">SUBMIT</button>
+  <form @submit.prevent="addTask">
+
+    <input type="text" name="text" v-model="newTask">
+    <input type="submit" value="SUBMIT">
+  </form>
+
   <ul>
-    <li v-for="list in todoList">{{ list.task }}</li>
+    <li v-for="(list, index) in todoList" :key="index">
+      {{ list.task }}
+    </li>
   </ul>
 </template>
 
