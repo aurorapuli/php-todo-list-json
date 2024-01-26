@@ -51,6 +51,26 @@ export default {
         }).catch(err => console.log(err));
 
     },
+    deleteElement(index) {
+
+      const params = {
+        params: {
+
+          index: index,
+
+        }
+      }
+
+      axios.get('http://localhost/php-todo-list-json/Back/delete.php', params)
+        .then(res => {
+          this.todoList = res.data;
+
+          console.log(this.todoList);
+
+
+        }).catch(err => console.log(err));
+    }
+
   },
   mounted() {
 
@@ -76,6 +96,8 @@ export default {
     <li v-for="(list, index) in todoList" :key="index" @click="changeValue(index)"
       :class="{ 'line-trought': list.completed === false }">
       {{ list.task }}
+
+      <button @click="deleteElement(index)">X</button>
     </li>
   </ul>
 </template>
@@ -83,6 +105,7 @@ export default {
 <style scoped>
 li {
   text-align: start;
+  cursor: pointer;
 }
 
 .line-trought {
