@@ -25,9 +25,32 @@ export default {
           this.todoList = res.data;
           this.newTask = "";
 
+          console.log(this.todoList);
+
 
         }).catch(err => console.log(err));
-    }
+    },
+    changeValue(index) {
+
+      this.todoList[index].completed = !this.todoList[index].completed;
+      const params = {
+        params: {
+
+          index: index,
+          value: this.todoList[index].completed,
+        }
+      }
+
+      axios.get('http://localhost/php-todo-list-json/Back/changeValue.php', params)
+        .then(res => {
+          this.todoList = res.data;
+
+          console.log(this.todoList);
+
+
+        }).catch(err => console.log(err));
+
+    },
   },
   mounted() {
 
@@ -50,7 +73,8 @@ export default {
   </form>
 
   <ul>
-    <li v-for="(list, index) in todoList" :key="index">
+    <li v-for="(list, index) in todoList" :key="index" @click="changeValue(index)"
+      :class="{ 'line-trought': list.completed === false }">
       {{ list.task }}
     </li>
   </ul>
@@ -59,5 +83,9 @@ export default {
 <style scoped>
 li {
   text-align: start;
+}
+
+.line-trought {
+  text-decoration: line-through;
 }
 </style>
